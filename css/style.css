@@ -1,0 +1,53 @@
+body{
+
+    background-color: gray;
+}
+h1{ font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    border-radius: 5px;
+    font-size: xx-large;
+    font-weight: bolder;
+    background-color: white;
+    color:  rgb(24, 23, 23);
+    padding: 20px;
+}
+
+#left-image{
+    margin-top: 30px;
+    margin-left: 150px;
+    background-color: rgb(24, 23, 23);
+    padding: 5px;
+    height: 250px;
+    width:  250px ;
+}
+#middle-image{
+    margin-top: 30px;
+    margin-left: 150px;
+    background-color: rgb(24, 23, 23);
+    padding: 5px;
+    height: 250px;
+    width:250px ;
+}
+#right-image{
+    margin-top: 30px;
+    margin-left: 150px;
+    background-color: rgb(24, 23, 23);
+    padding: 5px;
+    height: 250px;
+    width:250px ;
+}
+p{
+  font-size: x-larger;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: rgb(24, 23, 23);
+  padding: 10px;
+  margin-left: 350px;
+  font-weight: bolder;
+  padding: 20px;
+  padding-top: 40px;
+   border-style: solid ;
+   background-color: white;
+   margin-right: 330px;
+
+
+}
