@@ -24,17 +24,26 @@ for(var i=0;i<allimages.length;i++){
 new challange(allimages[i]);
 }
 
+
 var leftIndex = randomNumber(0,allimages.length);
 var rightIndex = randomNumber(0,allimages.length);
-while(leftIndex === rightIndex )
+var middleIndex = randomNumber(0,allimages.length);
+
+var r =[leftIndex,rightIndex,middleIndex];
+
+while(leftIndex === rightIndex ||  r.includes(leftIndex) || r.includes(rightIndex) || middleIndex === rightIndex || middleIndex === leftIndex   || r.includes(middleIndex) )
+ 
 {
     rightIndex = randomNumber(0,allimages.length);
-}
-var middleIndex = randomNumber(0,allimages.length);
-while(middleIndex === rightIndex || middleIndex === leftIndex )
-{
+    leftIndex = randomNumber(0,allimages.length);
     middleIndex = randomNumber(0,allimages.length);
-  }
+    x=leftIndex;
+}
+
+r[0]=leftIndex;
+r[1]=middleIndex;
+r[2]=rightIndex;
+
 
 
 ///left image
@@ -42,6 +51,7 @@ if(leftIndex === 14 )
 {  challange.all [14].path = `assets/${allimages[14]}.png`;
   leftImageEl.src = challange.all [leftIndex].path ; 
   challange.all[leftIndex].shown++;
+  prev =1;
   console.log('Index:',leftIndex,'allimages',challange.all [leftIndex]);
 
 }else if (leftIndex === 17 ){
@@ -124,8 +134,9 @@ images.addEventListener('click',AddVotes);
         render();
        
       }
-      if(count === 25){
+      if(count === 10){
       images.removeEventListener('click',AddVotes);
+      barchart();
   
       
       
@@ -139,10 +150,51 @@ images.addEventListener('click',AddVotes);
   }
 }
 
- 
-  
+function barchart(){
+const imageNames = [];
+  const votes = [];
+  const shown=[];
+  for (let i = 0; i < challange.all.length; i++) {
+    imageNames.push (challange.all[i].name)
+    votes.push(challange.all[i].votes)
+    shown.push(challange.all[i].shown)}
+
+    
+
+var ctx = document.getElementById("myChart").getContext("2d");
+
+var data = {
+    labels: imageNames,
+    datasets: [
+        {
+            label: "votes",
+            backgroundColor: "blue",
+            data: votes
+        },
+        
+        {
+            label: "shown",
+            backgroundColor: "green",
+            data: shown
+        }
+    ]
+};
+
+var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: {
+        barValueSpacing: 50,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                }
+            }]
+        }
+    }
+});}
 
 //RandomNumber functions
 function randomNumber(min, max) {
-return Math.floor(Math.random() * (max - min )) + min;
-}
+return Math.floor(Math.random() * (max - min )) + min;}
