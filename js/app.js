@@ -17,6 +17,37 @@ for (let i = 0; i <allimages.length; i++) {
   new challange(allimages[i]);
 }
 
+function updateproducts() {
+  // store to local storage
+  //1 stringify
+  var imageString = JSON.stringify(challange.all);
+  //2 setItem
+  localStorage.setItem('products', imageString);
+}
+function gitproduct() {
+  // 1 getItem
+  var imagesString = localStorage.getItem('products');
+  
+  // 2 parse
+  var productArray = JSON.parse(imagesString);
+  console.log('arr', productArray);
+  if (productArray) {
+    
+    
+    for (var i = 0; i < productArray.length; i++) {
+      new challange(
+        productArray[i].name,
+        productArray[i].path,
+        productArray[i].votes,
+        productArray[i].shown
+      );
+    }
+    
+  }
+}
+
+updateproducts();
+gitproduct();
 
 function render () {
 
@@ -164,7 +195,7 @@ const imageNames = [];
 var ctx = document.getElementById("myChart").getContext("2d");
 
 var data = {
-    labels: imageNames,
+    labels: allimages,
     datasets: [
         {
             label: "votes",
