@@ -186,9 +186,10 @@ const imageNames = [];
   const votes = [];
   const shown=[];
   for (let i = 0; i < challange.all.length; i++) {
-    imageNames.push (challange.all[i].name)
-    votes.push(challange.all[i].votes)
-    shown.push(challange.all[i].shown)}
+    imageNames.push (challange.all[i].name);
+    votes.push(challange.all[i].votes);
+    shown.push(challange.all[i].shown);
+  }
 
     
 
