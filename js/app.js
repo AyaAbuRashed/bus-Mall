@@ -17,37 +17,26 @@ for (let i = 0; i <allimages.length; i++) {
   new challange(allimages[i]);
 }
 
-function updateproducts() {
+function setProducts() {
   // store to local storage
   //1 stringify
   var imageString = JSON.stringify(challange.all);
   //2 setItem
   localStorage.setItem('products', imageString);
 }
-function gitproduct() {
+function getProducts() {
   // 1 getItem
   var imagesString = localStorage.getItem('products');
   
   // 2 parse
-  var productArray = JSON.parse(imagesString);
-  console.log('arr', productArray);
-  if (productArray) {
-    
-    
-    for (var i = 0; i < productArray.length; i++) {
-      new challange(
-        productArray[i].name,
-        productArray[i].path,
-        productArray[i].votes,
-        productArray[i].shown
-      );
-    }
-    
-  }
-}
+  if (imagesString){
+    challange.all = JSON.parse(imagesString);}
 
-updateproducts();
-gitproduct();
+
+  }
+  
+
+
 
 
 var leftIndex = randomNumber(0,allimages.length);
@@ -55,6 +44,7 @@ var rightIndex = randomNumber(0,allimages.length);
 var middleIndex = randomNumber(0,allimages.length);
 
 var r =[leftIndex,middleIndex,rightIndex];
+
 function render () {
 
 for(var i=0;i<allimages.length;i++){
@@ -62,12 +52,8 @@ new challange(allimages[i]);
 }
 
 
-while(leftIndex === middleIndex || 
-   r.includes(leftIndex) || 
-   r.includes(rightIndex) || 
-    r.includes(middleIndex)  ||
-   leftIndex === rightIndex || 
-   middleIndex === rightIndex ) 
+while(leftIndex === rightIndex ||  r.includes(leftIndex) || r.includes(rightIndex) || middleIndex === rightIndex || middleIndex === leftIndex   || r.includes(middleIndex) )
+ 
 {
     rightIndex = randomNumber(0,allimages.length);
     leftIndex = randomNumber(0,allimages.length);
@@ -147,6 +133,7 @@ else {rightImageEl.src = challange.all [rightIndex].path ;
        leftImageEl.title = challange.all [leftIndex].name;
        rightImageEl.title = challange.all [rightIndex].name;
        middleImageEl.title = challange.all [middleIndex].name;
+      
 }
 
 
@@ -172,7 +159,8 @@ images.addEventListener('click',AddVotes);
       if(count === 10){
       images.removeEventListener('click',AddVotes);
       barchart();
-  
+      setProducts();
+      
       
       
       
@@ -184,7 +172,7 @@ images.addEventListener('click',AddVotes);
       }
   }
 }
-
+getProducts();
 function barchart(){
 const imageNames = [];
   const votes = [];
