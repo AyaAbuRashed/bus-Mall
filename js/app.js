@@ -49,6 +49,12 @@ function gitproduct() {
 updateproducts();
 gitproduct();
 
+
+var leftIndex = randomNumber(0,allimages.length);
+var rightIndex = randomNumber(0,allimages.length);
+var middleIndex = randomNumber(0,allimages.length);
+
+var r =[leftIndex,middleIndex,rightIndex];
 function render () {
 
 for(var i=0;i<allimages.length;i++){
@@ -56,19 +62,17 @@ new challange(allimages[i]);
 }
 
 
-var leftIndex = randomNumber(0,allimages.length);
-var rightIndex = randomNumber(0,allimages.length);
-var middleIndex = randomNumber(0,allimages.length);
-
-var r =[leftIndex,rightIndex,middleIndex];
-
-while(leftIndex === rightIndex ||  r.includes(leftIndex) || r.includes(rightIndex) || middleIndex === rightIndex || middleIndex === leftIndex   || r.includes(middleIndex) )
- 
+while(leftIndex === middleIndex || 
+   r.includes(leftIndex) || 
+   r.includes(rightIndex) || 
+    r.includes(middleIndex)  ||
+   leftIndex === rightIndex || 
+   middleIndex === rightIndex ) 
 {
     rightIndex = randomNumber(0,allimages.length);
     leftIndex = randomNumber(0,allimages.length);
     middleIndex = randomNumber(0,allimages.length);
-    x=leftIndex;
+    
 }
 
 r[0]=leftIndex;
