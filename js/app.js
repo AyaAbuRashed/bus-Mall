@@ -1,10 +1,14 @@
 
+//assign the value if the image to there in html code 
+
 var allimages=['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'];
 const leftImageEl = document.getElementById('left-image');
 const rightImageEl = document.getElementById('right-image');
 const middleImageEl = document.getElementById('middle-image');
 const imagesSection = document.getElementById('images-section');
 
+
+// challange constructor
 function challange(name) {
   this.name = name;
   this.path =  `assets/${name}.jpg`;
@@ -17,6 +21,7 @@ for (let i = 0; i <allimages.length; i++) {
   new challange(allimages[i]);
 }
 
+//function to store data in local storage
 function setProducts() {
   // store to local storage
   //1 stringify
@@ -24,6 +29,7 @@ function setProducts() {
   //2 setItem
   localStorage.setItem('products', imageString);
 }
+//function to get data from the local storage
 function getProducts() {
   // 1 getItem
   var imagesString = localStorage.getItem('products');
@@ -37,7 +43,7 @@ function getProducts() {
   
 
 
-
+// give the image index by calling randomNumber function
 
 var leftIndex = randomNumber(0,allimages.length);
 var rightIndex = randomNumber(0,allimages.length);
@@ -45,6 +51,7 @@ var middleIndex = randomNumber(0,allimages.length);
 
 var r =[leftIndex,middleIndex,rightIndex];
 
+//function to show 3 different image every time  and unieqe from previos 3 images also 
 function render () {
 
 for(var i=0;i<allimages.length;i++){
@@ -137,7 +144,7 @@ else {rightImageEl.src = challange.all [rightIndex].path ;
 }
 
 
-///addEventListener
+///addEventListener 
 render();
 var count =0;
 images.addEventListener('click',AddVotes);
@@ -156,6 +163,8 @@ images.addEventListener('click',AddVotes);
         render();
        
       }
+
+      // to stop and remove the EventListener if the images counter = 10 or more
       if(count === 10){
       images.removeEventListener('click',AddVotes);
       barchart();
@@ -183,7 +192,7 @@ const imageNames = [];
     shown.push(challange.all[i].shown);
   }
 
-    
+    // a chart to show the number of votes and shown for each images 
 
 var ctx = document.getElementById("myChart").getContext("2d");
 
